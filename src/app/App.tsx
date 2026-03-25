@@ -78,7 +78,7 @@ export default function App() {
         _password: string,
         _name: string,
         _company: string,
-        _role: "recruiter" | "applicant" | "admin",
+        _role: "recruiter" | "applicant" | "Administrator",
     ) => {
         throw new Error("Supabase auth is disabled in this build.");
     };
@@ -251,7 +251,7 @@ export default function App() {
                                 to={
                                     user?.user_metadata?.role === "applicant"
                                         ? "/applicant/overview"
-                                        : user?.user_metadata?.role === "admin"
+                                        : user?.user_metadata?.role === "Administrator"
                                             ? "/admin/overview"
                                             : "/recruiter/overview"
                                 }
@@ -286,7 +286,7 @@ export default function App() {
                                 to={
                                     user?.user_metadata?.role === "applicant"
                                         ? "/applicant/overview"
-                                        : user?.user_metadata?.role === "admin"
+                                        : user?.user_metadata?.role === "Adminstrator"
                                             ? "/admin/overview"
                                             : "/recruiter/overview"
                                 }
@@ -319,7 +319,7 @@ export default function App() {
                     element={
                         user &&
                             user?.user_metadata?.role !== "applicant" &&
-                            user?.user_metadata?.role !== "admin" ? (
+                            user?.user_metadata?.role !== "Administrator" ? (
                             <RecruiterLayout>
                                 <Overview />
                             </RecruiterLayout>
@@ -333,7 +333,7 @@ export default function App() {
                     element={
                         user &&
                             user?.user_metadata?.role !== "applicant" &&
-                            user?.user_metadata?.role !== "admin" ? (
+                            user?.user_metadata?.role !== "Administrator" ? (
                             <RecruiterLayout>
                                 <JobPostings />
                             </RecruiterLayout>
@@ -347,7 +347,7 @@ export default function App() {
                     element={
                         user &&
                             user?.user_metadata?.role !== "applicant" &&
-                            user?.user_metadata?.role !== "admin" ? (
+                            user?.user_metadata?.role !== "Administrator" ? (
                             <RecruiterLayout>
                                 <Candidates searchQuery={searchQuery} />
                             </RecruiterLayout>
@@ -361,7 +361,7 @@ export default function App() {
                     element={
                         user &&
                             user?.user_metadata?.role !== "applicant" &&
-                            user?.user_metadata?.role !== "admin" ? (
+                            user?.user_metadata?.role !== "Administrator" ? (
                             <RecruiterLayout>
                                 <Interviews />
                             </RecruiterLayout>
@@ -375,7 +375,7 @@ export default function App() {
                     element={
                         user &&
                             user?.user_metadata?.role !== "applicant" &&
-                            user?.user_metadata?.role !== "admin" ? (
+                            user?.user_metadata?.role !== "Administrator" ? (
                             <RecruiterLayout>
                                 <AIScreening />
                             </RecruiterLayout>
@@ -390,7 +390,7 @@ export default function App() {
                     element={
                         user &&
                             user?.user_metadata?.role !== "applicant" &&
-                            user?.user_metadata?.role !== "admin" ? (
+                            user?.user_metadata?.role !== "Administrator" ? (
                             <RecruiterLayout>
                                 <Profile user={user} />
                             </RecruiterLayout>
@@ -476,7 +476,7 @@ export default function App() {
                 <Route
                     path="/admin"
                     element={
-                        user?.user_metadata?.role === "admin" ? (
+                        user?.user_metadata?.role === "Administrator" ? (
                             <Navigate to="/admin/overview" replace />
                         ) : (
                             <Navigate to="/login" replace />
@@ -486,7 +486,7 @@ export default function App() {
                 <Route
                     path="/admin/overview"
                     element={
-                        user?.user_metadata?.role === "admin" ? (
+                        user?.user_metadata?.role === "Administrator" ? (
                             <AdminLayout>
                                 <AdminOverview />
                             </AdminLayout>
@@ -498,7 +498,7 @@ export default function App() {
                 <Route
                     path="/admin/user-management"
                     element={
-                        user?.user_metadata?.role === "admin" ? (
+                        user?.user_metadata?.role === "Administrator" ? (
                             <AdminLayout>
                                 <UserManagement />
                             </AdminLayout>
@@ -510,7 +510,7 @@ export default function App() {
                 <Route
                     path="/admin/job-management"
                     element={
-                        user?.user_metadata?.role === "admin" ? (
+                        user?.user_metadata?.role === "Administrator" ? (
                             <AdminLayout>
                                 <JobManagement />
                             </AdminLayout>
@@ -522,7 +522,7 @@ export default function App() {
                 <Route
                     path="/admin/platform-metrics"
                     element={
-                        user?.user_metadata?.role === "admin" ? (
+                        user?.user_metadata?.role === "Administrator" ? (
                             <AdminLayout>
                                 <PlatformMetrics />
                             </AdminLayout>
@@ -534,7 +534,7 @@ export default function App() {
                 <Route
                     path="/admin/settings"
                     element={
-                        user?.user_metadata?.role === "admin" ? (
+                        user?.user_metadata?.role === "Administrator" ? (
                             <AdminLayout>
                                 <AdminSettings />
                             </AdminLayout>

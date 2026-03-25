@@ -37,11 +37,12 @@ export function LoginPage({
             { email, password },
             {
                 onSuccess: (data: any) => {
+                    localStorage.setItem("token", data.token); // ← add this line
                     const decoded = decodeJWT(data.token);
                     const role =
                         decoded?.[
-                            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-                        ]?.toLowerCase?.() ?? "";
+                        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+                        ] ?? "";
                     setUser({
                         id: decoded.uid,
                         email: decoded.email,
