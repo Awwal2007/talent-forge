@@ -52,8 +52,8 @@ export const useVerifyEmail = () => {
 //
 export const useForgotPassword = () => {
     return useMutation({
-        mutationFn: (data: ForgotPasswordRequest) =>
-            authApi.forgotPassword(data),
+        mutationFn: (email: string) =>
+            authApi.forgotPassword(email),
     });
 };
 
@@ -72,8 +72,8 @@ export const useSetPassword = () => {
 //
 export const useResetPassword = () => {
     return useMutation({
-        mutationFn: (data: ResetPasswordRequest) =>
-            authApi.resetPassword(data),
+        mutationFn: ({ email, token, newPassword }: ResetPasswordRequest) =>
+            authApi.resetPassword(email, token, newPassword),
     });
 };
 

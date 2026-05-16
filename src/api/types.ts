@@ -51,9 +51,7 @@ export interface VerifyEmailRequest {
   token: string;
 }
 
-export interface ForgotPasswordRequest {
-  email: string;
-}
+
 
 export interface SetPasswordRequest {
   email: string;
@@ -61,11 +59,16 @@ export interface SetPasswordRequest {
   newPassword: string;
 }
 
+export interface ForgotPasswordRequest {
+  email: string;
+}
+
 export interface ResetPasswordRequest {
   email: string;
   token: string;
   newPassword: string;
 }
+
 
 export interface Job {
   id: string;

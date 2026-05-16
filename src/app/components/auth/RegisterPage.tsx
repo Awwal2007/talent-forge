@@ -54,9 +54,11 @@ export function RegisterPage({
             { firstName, lastName, email, password },
             {
                 onSuccess: () => {
+                    console.log("Account created successfully");
                     onSuccess?.();
                 },
                 onError: (err: any) => {
+                    console.log(err)
                     setError(err.message || "Failed to create account");
                 },
             },

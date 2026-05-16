@@ -1,5 +1,5 @@
 import { client } from "./client";
-import { ApiResponse, ForgotPasswordRequest, LoginRequest, RegisterAdminRequest, RegisterRequest, ResetPasswordRequest, SetPasswordRequest, VerifyEmailRequest } from "./types";
+import { ApiResponse, LoginRequest, RegisterAdminRequest, RegisterRequest, SetPasswordRequest, VerifyEmailRequest } from "./types";
 
 export const authApi = {
     login: async (data: LoginRequest) => {
@@ -14,6 +14,7 @@ export const authApi = {
             "/Account/register",
             data,
         );
+        // console.log(res)
         return res.data;
     },
     registerAdmin: async (data: RegisterAdminRequest) => {
@@ -30,10 +31,9 @@ export const authApi = {
         );
         return res.data;
     },
-    forgotPassword: async (data: ForgotPasswordRequest) => {
+    forgotPassword: async (email: string) => {
         const res = await client.post<ApiResponse<{ message: string }>>(
-            "/Account/forgot-password",
-            data,
+            `/Account/forgot-password?email=${email}`,
         );
         return res.data;
     },
@@ -44,10 +44,10 @@ export const authApi = {
         );
         return res.data;
     },
-    resetPassword: async (data: ResetPasswordRequest) => {
+    resetPassword: async (email: string, token: string, newPassword: string) => {
         const res = await client.post<ApiResponse<{ message: string }>>(
-            "/Account/reset-password",
-            data,
+            `/Account/reset-password?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}&newPassword=${encodeURIComponent(newPassword)}`,
+            {},
         );
         return res.data;
     },

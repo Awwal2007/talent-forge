@@ -12,6 +12,7 @@ const decodeJWT = (token: string): any => {
 interface LoginPageProps {
     onBackToLanding: () => void;
     onSwitchToRegister: () => void;
+    onForgotPassword: () => void;
     onSuccess?: (role: string) => void;
     setUser: (user: any) => void;
 }
@@ -19,8 +20,9 @@ interface LoginPageProps {
 export function LoginPage({
     onBackToLanding,
     onSwitchToRegister,
-    onSuccess,
-    setUser,
+    onForgotPassword,
+onSuccess,
+setUser,
 }: LoginPageProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -160,9 +162,9 @@ export function LoginPage({
                                 />
                                 <span className="ml-2 text-sm text-gray-600">Remember me</span>
                             </label>
-                            <a href="#" className="text-sm text-teal-600 hover:text-teal-700">
+                            <button type="button" onClick={onForgotPassword} className="text-sm text-teal-600 hover:text-teal-700 font-medium">
                                 Forgot password?
-                            </a>
+                            </button>
                         </div>
 
                         <button
@@ -218,3 +220,6 @@ export function LoginPage({
         </div>
     );
 }
+
+
+

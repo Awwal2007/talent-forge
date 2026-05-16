@@ -10,6 +10,8 @@ import { LandingPage } from "./components/landing/LandingPage";
 import { JobsPage } from "./components/landing/JobsPage";
 import { LoginPage } from "./components/auth/LoginPage";
 import { RegisterPage } from "./components/auth/RegisterPage";
+import { ForgotPasswordPage } from "./components/auth/ForgotPasswordPage";
+import { ResetPasswordPage } from "./components/auth/ResetPasswordPage";
 import { RecruiterSidebar } from "./components/Sidebar";
 import { ApplicantSidebar } from "./components/ApplicantSidebar";
 import { AdminSidebar } from "./components/AdminSidebar";
@@ -262,6 +264,7 @@ export default function App() {
                                 // onLogin={handleLogin}
                                 onBackToLanding={() => navigate("/")}
                                 onSwitchToRegister={() => navigate("/register")}
+                                onForgotPassword={() => navigate("/forgot-password")}
                                 onSuccess={(role) => {
                                     if (role === "admin") {
                                         navigate("/admin/overview");
@@ -297,6 +300,47 @@ export default function App() {
                                 onRegister={handleRegister}
                                 onBackToLanding={() => navigate("/")}
                                 onSwitchToLogin={() => navigate("/login")}
+                                onSuccess={() => navigate("/login")}
+                            />
+                        )
+                    }
+                />
+                <Route
+                    path="/forgot-password"
+                    element={
+                        user ? (
+                            <Navigate
+                                to={
+                                    user?.user_metadata?.role === "applicant"
+                                        ? "/applicant/overview"
+                                        : user?.user_metadata?.role === "Administrator"
+                                            ? "/admin/overview"
+                                            : "/recruiter/overview"
+                                }
+                                replace
+                            />
+                        ) : (
+                            <ForgotPasswordPage onBackToLogin={() => navigate("/login")} />
+                        )
+                    }
+                />
+                <Route
+                    path="/reset-password"
+                    element={
+                        user ? (
+                            <Navigate
+                                to={
+                                    user?.user_metadata?.role === "applicant"
+                                        ? "/applicant/overview"
+                                        : user?.user_metadata?.role === "Administrator"
+                                            ? "/admin/overview"
+                                            : "/recruiter/overview"
+                                }
+                                replace
+                            />
+                        ) : (
+                            <ResetPasswordPage 
+                                onBackToLogin={() => navigate("/login")}
                                 onSuccess={() => navigate("/login")}
                             />
                         )
@@ -551,5 +595,8 @@ export default function App() {
         </>
     );
 }
+
+
+
 
 
